@@ -1,0 +1,46 @@
+# ══════════════════════════════════════════════════════════════════════════════
+#  Study Buddy RAG v2 — requirements.txt
+#  Works on: Streamlit Cloud (Gemini backend) + Local (Ollama backend)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Core ──────────────────────────────────────────────────────────────────────
+streamlit>=1.35.0
+
+# ── LangChain stack ───────────────────────────────────────────────────────────
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langchain-text-splitters>=0.2.0
+
+# ── Vector store ──────────────────────────────────────────────────────────────
+chromadb>=0.5.0
+
+# ── Hybrid Search (BM25) ──────────────────────────────────────────────────────
+rank-bm25>=0.2.2               # BM25Retriever backend
+
+# ── Advanced PDF parsing (tables, layout, markdown) ───────────────────────────
+pymupdf4llm>=0.0.17            # PyMuPDF4LLM — replaces PyPDFLoader
+pymupdf>=1.24.0                # PyMuPDF core (required by pymupdf4llm)
+
+# ── Gemini (Cloud backend) ────────────────────────────────────────────────────
+langchain-google-genai>=1.0.0  # ChatGoogleGenerativeAI + Embeddings
+google-generativeai>=0.7.0     # Gemini SDK (vision, chat)
+Pillow>=10.0.0                 # Image handling for vision feature
+
+# ── Ollama (Local backend) ────────────────────────────────────────────────────
+langchain-ollama>=0.1.0        # OllamaLLM + OllamaEmbeddings
+ollama>=0.2.0                  # Python client (vision calls)
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  NOTES
+#  • PyPDFLoader (pypdf) is no longer used — replaced by pymupdf4llm
+#  • On Streamlit Cloud: set GEMINI_API_KEY in App Secrets
+#  • On local machine: set GEMINI_API_KEY env var OR just run Ollama
+#  • Ollama models needed locally:
+#      ollama pull phi3.5
+#      ollama pull nomic-embed-text
+#      ollama pull phi3-vision    (for vision feature)
+# ══════════════════════════════════════════════════════════════════════════════
